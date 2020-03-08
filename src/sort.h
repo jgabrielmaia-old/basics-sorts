@@ -4,11 +4,13 @@
 static void BubbleSort (char toSort[], int size);
 static void InsertionSort (char toSort[], int size);
 static void SelectionSort (char toSort[], int size);
+static void MergeSort (char toSort[], int size);
 
-//Utils
-void swapChar(char *a, char *b);
-void swapInt(int *a, int *b);
-void printStr(char* toPrint);
+void Split (char toSort[], int first, int last);
+void Merge (char toSort[], int first, int mid, int last);
+void swapChar (char *a, char *b);
+void swapInt (int *a, int *b);
+void printStr (char* toPrint);
 
 static void BubbleSort (char toSort[], int size)
 {
@@ -73,6 +75,52 @@ void swapInt(int *a, int *b)
     int temp = *a; 
     *a = *b; 
     *b = temp; 
+}
+
+static void MergeSort (char toSort[], int size)
+{
+    Split(toSort, 0, size);
+}
+
+void Split(char toSort[], int first, int last)
+{
+    printf("First: %d, Last: %d\n", first,last);
+
+    if (first < last)
+    {
+        int mid = (first + last) / 2;
+        Split(toSort, first, mid); 
+        Split(toSort, mid+1, last); 
+        Merge(toSort, first, mid, last);
+    }
+}
+
+void Merge(char toSort[], int first, int mid, int last)
+{
+    int i = first, 
+        j = mid + 1, 
+        k = first;
+
+    char aux[last-first+1];
+
+    while(i <= mid && j <= last)
+    {
+        if(toSort[i] < toSort[j])
+            aux[k++] = toSort[i++];
+        else
+            aux[k++] = toSort[j++];           
+    }
+    
+    while(i <= mid)
+        aux[k++] = toSort[i++];
+    
+    while(i <= last)
+        aux[k++] = toSort[j++];
+
+
+    int l = 0;
+    for(l = first; l <= last; l++)
+        toSort[l] = aux[l];
 }
 
 void printStr(char* toPrint)
