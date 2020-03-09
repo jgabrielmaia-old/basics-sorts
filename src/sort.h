@@ -79,7 +79,7 @@ void swapInt(int *a, int *b)
 
 static void MergeSort (char toSort[], int size)
 {
-    Split(toSort, 0, size);
+    Split(toSort, 0, size - 1);
 }
 
 void Split(char toSort[], int first, int last)
@@ -99,31 +99,31 @@ void Merge(char toSort[], int first, int mid, int last)
 {
     int i = first, 
         j = mid + 1, 
-        k = first;
+        index = 0;
 
-    char aux[last-first+1];
+    char aux[(last-first)+1];
 
     while(i <= mid && j <= last)
     {
         if(toSort[i] < toSort[j])
-            aux[k++] = toSort[i++];
+            aux[index++] = toSort[i++];
         else
-            aux[k++] = toSort[j++];           
+            aux[index++] = toSort[j++];           
     }
     
     while(i <= mid)
-        aux[k++] = toSort[i++];
+        aux[index++] = toSort[i++];
     
-    while(i <= last)
-        aux[k++] = toSort[j++];
+    while(j <= last)
+        aux[index++] = toSort[j++];
 
 
     int l = 0;
     for(l = first; l <= last; l++)
-        toSort[l] = aux[l];
+        toSort[l] = aux[l-first];
 }
 
 void printStr(char* toPrint)
 {
-    printf("RESULT: %s\n", toPrint);
+    printf("\nRESULT: %s\n\n", toPrint);
 }
