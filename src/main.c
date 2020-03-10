@@ -1,11 +1,12 @@
 #include <stdlib.h>
+#include "music.h"
 #include "sort.h"
 #include "fileHandler.h"
 
-
 int main() 
 {
-    readFromFile("../data/top2018.csv");
-
+    music* arr_musics = (music*) calloc(100, sizeof(music));
+    readMusicsFromFile("../data/top2018.csv", arr_musics);
+    printMusics(arr_musics, 10);
     return 0;
 }

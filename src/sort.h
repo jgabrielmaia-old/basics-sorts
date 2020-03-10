@@ -6,6 +6,8 @@ static void InsertionSort (char toSort[], int size);
 static void SelectionSort (char toSort[], int size);
 static void MergeSort (char toSort[], int size);
 
+static void InsertionSortMusicsByName (music* arr_musics, int size);
+
 void Split (char toSort[], int first, int last);
 void Merge (char toSort[], int first, int mid, int last);
 void swapChar (char *a, char *b);
@@ -60,6 +62,25 @@ static void InsertionSort (char toSort[], int size)
         }
 
         toSort[j+1] = key;
+    }
+}
+
+static void InsertionSortMusicsByName (music* arr_musics, int size)
+{
+    int i,j;
+    char* key;
+    
+    for(i = 1; i < size; i++)
+    {
+        key = arr_musics[i].Name;
+        j = i - 1;
+        while((j >= 0) && (arr_musics[j].Name > key))
+        {
+            arr_musics[j+1] =arr_musics[j];
+            j--;
+        }
+
+        arr_musics[j+1].Name = key;
     }
 }
 
