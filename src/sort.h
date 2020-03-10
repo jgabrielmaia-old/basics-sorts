@@ -6,7 +6,7 @@ static void InsertionSort (char toSort[], int size);
 static void SelectionSort (char toSort[], int size);
 static void MergeSort (char toSort[], int size);
 
-static void InsertionSortMusicsByName (music* arr_musics, int size);
+static void InsertionSortMusicsByName (music arr_musics[], int size);
 
 void Split (char toSort[], int first, int last);
 void Merge (char toSort[], int first, int mid, int last);
@@ -65,23 +65,29 @@ static void InsertionSort (char toSort[], int size)
     }
 }
 
-static void InsertionSortMusicsByName (music* arr_musics, int size)
+static void InsertionSortMusicsByName (music arr_musics[], int size)
 {
     int i,j;
-    char* key;
+    music key;
     
+    printf("\n\nBefore\n\n");
+    printMusicNames(arr_musics, 10);
+
     for(i = 1; i < size; i++)
     {
-        key = arr_musics[i].Name;
+        key = arr_musics[i];
         j = i - 1;
-        while((j >= 0) && (arr_musics[j].Name > key))
+        while((j >= 0) && (arr_musics[j].Name > key.Name))
         {
             arr_musics[j+1] =arr_musics[j];
             j--;
         }
 
-        arr_musics[j+1].Name = key;
+        arr_musics[j+1] = key;
     }
+
+    printf("\n\nAfter\n\n");
+    printMusicNames(arr_musics, 10);
 }
 
 void swapChar(char *a, char *b)

@@ -2,13 +2,13 @@
 #include <stdlib.h>
 #include <string.h>
 
-void readMusicsFromFile(char* filepath, music* arr_musics);
+void readMusicsFromFile(char* filepath, music* arr_musics, int take);
 void readFromFile(char* filepath);
 void writeToFile(char* filepath);
 
 static char* getfield(char* line, int num);
 
-void readMusicsFromFile(char* filepath, music* arr_musics)
+void readMusicsFromFile(char* filepath, music* arr_musics, int take)
 {
     int m = 0;
 
@@ -19,7 +19,7 @@ void readMusicsFromFile(char* filepath, music* arr_musics)
     //Skip First line
     fgets(line, sizeof(line), stream);
 
-    while (fgets(line, 1024, stream) && m < 100)
+    while (fgets(line, 1024, stream) && m < take)
     {
         arr_musics[m].Id = getfield(line, 0);
         arr_musics[m].Name = getfield(line, 1);
