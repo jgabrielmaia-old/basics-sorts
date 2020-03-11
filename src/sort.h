@@ -46,7 +46,8 @@ static void SelectionSort (char toSort[], int size)
 
 static void InsertionSort (char toSort[], int size)
 {
-    int i,j, key;
+    int i,j;
+    char key;
     
     for(i = 1; i < size; i++)
     {
