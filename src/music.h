@@ -7,12 +7,12 @@ typedef struct music
     char* Id;
     char* Name;
     char* Artists;
-} music;
+} Music;
 
-void printMusics(music* arr_musics, int size);
-void printMusicNames(music* arr_musics, int size);
+void printMusics(Music* arr_musics, int size);
+void printMusicNames(Music* arr_musics, int size);
 
-void printMusics(music* arr_musics, int size)
+void printMusics(Music* arr_musics, int size)
 {
     for (int i = 0; i < size; i++)
     {
@@ -23,7 +23,7 @@ void printMusics(music* arr_musics, int size)
     }
 }
 
-void printMusicNames(music* arr_musics, int size)
+void printMusicNames(Music* arr_musics, int size)
 {
     for (int i = 0; i < size; i++)
     {

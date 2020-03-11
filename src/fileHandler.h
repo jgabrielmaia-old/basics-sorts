@@ -2,13 +2,13 @@
 #include <stdlib.h>
 #include <string.h>
 
-void readMusicsFromFile(char* filepath, music* arr_musics, int take);
+void readMusicsFromFile(char* filepath, Music* arr_musics, int take);
 void readFromFile(char* filepath);
 void writeToFile(char* filepath);
 
 static char* getfield(char* line, int num);
 
-void readMusicsFromFile(char* filepath, music* arr_musics, int take)
+void readMusicsFromFile(char* filepath, Music* arr_musics, int take)
 {
     int m = 0;
 
