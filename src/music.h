@@ -11,6 +11,7 @@ typedef struct music
 
 void printMusics(Music* arr_musics, int size);
 void printMusicNames(Music* arr_musics, int size);
+void printMusicArtistsAndNames(Music* arr_musics, int size);
 
 void printMusics(Music* arr_musics, int size)
 {
@@ -28,5 +29,13 @@ void printMusicNames(Music* arr_musics, int size)
     for (int i = 0; i < size; i++)
     {
         printf("%s\n",arr_musics[i].Name);
+    }
+}
+
+void printMusicArtistsAndNames(Music* arr_musics, int size)
+{
+    for (int i = 0; i < size; i++)
+    {
+        printf("%s, %s\n", arr_musics[i].Artists, arr_musics[i].Name);
     }
 }

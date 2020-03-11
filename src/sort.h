@@ -12,11 +12,18 @@ void Merge (char toSort[], int first, int mid, int last);
 
 
 static void InsertionSortMusicsByName (Music* arr_musics, int size);
+static void InsertionSortMusicsByArtists (Music* arr_musics, int size);
+
 static void MergeSortMusicsByName (Music toSort[], int size);
+static void MergeSortMusicsByArtists (Music toSort[], int size);
 
 
 void MSplit (Music toSort[], int first, int last);
 void MMerge (Music toSort[], int first, int mid, int last);
+
+void MSplitArtists(Music toSort[], int first, int last);
+void MMergeArtists(Music toSort[], int first, int mid, int last);
+
 void swapChar (char *a, char *b);
 void swapInt (int *a, int *b);
 void printStr (char* toPrint);
@@ -84,6 +91,26 @@ static void InsertionSortMusicsByName (Music* arr_musics, int size)
         j = i - 1;
 
         while(j >= 0 && strcasecmp(arr_musics[j].Name, key.Name) > 0)
+        {
+            arr_musics[j+1] = arr_musics[j];
+            j--;
+        }
+
+        arr_musics[j+1]= key;
+    }
+}
+
+static void InsertionSortMusicsByArtists (Music* arr_musics, int size)
+{
+    int i,j;
+    Music key;
+
+    for(i = 1; i < size; i++)
+    {
+        key = arr_musics[i];
+        j = i - 1;
+
+        while(j >= 0 && strcasecmp(arr_musics[j].Artists, key.Artists) > 0)
         {
             arr_musics[j+1] = arr_musics[j];
             j--;
@@ -180,6 +207,50 @@ void MMerge(Music toSort[], int first, int mid, int last)
     while(i <= mid && j <= last)
     {
         if(strcasecmp(toSort[i].Name, toSort[j].Name) < 0)
+            aux[index++] = toSort[i++];
+        else
+            aux[index++] = toSort[j++];           
+    }
+    
+    while(i <= mid)
+        aux[index++] = toSort[i++];
+    
+    while(j <= last)
+        aux[index++] = toSort[j++];
+
+
+    int l = 0;
+    for(l = first; l <= last; l++)
+        toSort[l] = aux[l-first];
+}
+
+static void MergeSortMusicsByArtists (Music toSort[], int size)
+{
+    MSplitArtists(toSort, 0, size - 1);
+}
+
+void MSplitArtists(Music toSort[], int first, int last)
+{
+    if (first < last)
+    {
+        int mid = (first + last) / 2;
+        MSplitArtists(toSort, first, mid); 
+        MSplitArtists(toSort, mid+1, last); 
+        MMergeArtists(toSort, first, mid, last);
+    }
+}
+
+void MMergeArtists(Music toSort[], int first, int mid, int last)
+{
+    int i = first, 
+        j = mid + 1, 
+        index = 0;
+
+    Music aux[(last-first)+1];
+
+    while(i <= mid && j <= last)
+    {
+        if(strcasecmp(toSort[i].Artists, toSort[j].Artists) < 0)
             aux[index++] = toSort[i++];
         else
             aux[index++] = toSort[j++];           

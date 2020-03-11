@@ -17,18 +17,20 @@ int main()
     arr_musics_merge = arr_musics_insert;
     
     //InsertionSort
+    InsertionSortMusicsByArtists(arr_musics_insert, 100);
     InsertionSortMusicsByName(arr_musics_insert, 100);
     printf("\nSorted Musics by Insertion:\n");
-    printMusicNames(arr_musics_insert, 100);
+    printMusicArtistsAndNames(arr_musics_insert, 100);
 
     printf("\nSaving Musics on file for InsertionSort...\n");
     writeMusicsToCSV("../data/spotify_insertionsort.csv", arr_musics_insert, 100);
     printf("\nSaved!\n\n\n");
     
     //MergeSort
+    MergeSortMusicsByArtists(arr_musics_merge, 10); 
     MergeSortMusicsByName(arr_musics_merge, 10);
     printf("\nSorted Musics by MergeSort:\n");
-    printMusicNames(arr_musics_merge, 10);
+    printMusicArtistsAndNames(arr_musics_merge, 10);
 
     printf("\nSaving Musics on file for MergeSort...\n");
     writeMusicsToCSV("../data/spotify_mergesort.csv",arr_musics_merge, 10);
