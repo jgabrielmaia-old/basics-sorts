@@ -1,4 +1,5 @@
-#include<stdio.h>
+#include <stdio.h>
+#include <strings.h>
 
 //Sorts
 static void BubbleSort (char toSort[], int size);
@@ -75,22 +76,20 @@ static void InsertionSort (char toSort[], int size)
 static void InsertionSortMusicsByName (Music* arr_musics, int size)
 {
     int i,j;
-    Music *key;
-    
-    for(i = 2; i < size; i++)
+    Music key;
+
+    for(i = 1; i < size; i++)
     {
-        key = &arr_musics[i];
+        key = arr_musics[i];
         j = i - 1;
 
-        while(j > 0 && arr_musics[j].Name > key->Name)
+        while(j >= 0 && strcasecmp(arr_musics[j].Name, key.Name) > 0)
         {
             arr_musics[j+1] = arr_musics[j];
             j--;
         }
 
-        arr_musics[j+1].Id = key->Id;
-        arr_musics[j+1].Name = key->Name;
-        arr_musics[j+1].Artists = key->Id;
+        arr_musics[j+1]= key;
     }
 }
 
@@ -161,8 +160,6 @@ static void MergeSortMusicsByName (Music toSort[], int size)
 
 void MSplit(Music toSort[], int first, int last)
 {
-    printf("First: %d, Last: %d\n", first,last);
-
     if (first < last)
     {
         int mid = (first + last) / 2;
@@ -182,7 +179,7 @@ void MMerge(Music toSort[], int first, int mid, int last)
 
     while(i <= mid && j <= last)
     {
-        if(toSort[i].Name < toSort[j].Name)
+        if(strcasecmp(toSort[i].Name, toSort[j].Name) < 0)
             aux[index++] = toSort[i++];
         else
             aux[index++] = toSort[j++];           

@@ -2,13 +2,14 @@
 #include <stdlib.h>
 #include <string.h>
 
-void readMusicsFromFile(char* filepath, Music* arr_musics, int take);
+// Read musics from given CSV source 
+void readMusicsFromCSV(char* filepath, Music* arr_musics, int take);
 void readFromFile(char* filepath);
-void writeToFile(char* filepath);
+int writeMusicsToCSV(char* filepath, Music* arr_musics, int size);
 
 static char* getfield(char* line, int num);
 
-void readMusicsFromFile(char* filepath, Music* arr_musics, int take)
+void readMusicsFromCSV(char* filepath, Music* arr_musics, int take)
 {
     int m = 0;
 
@@ -46,6 +47,26 @@ void readFromFile(char* filepath)
         printf("\n");
     }
 
+}
+
+int writeMusicsToCSV(char* filepath, Music* arr_musics, int size) 
+{
+    FILE * fp;
+    int i;
+    /* open the file for writing*/
+    fp = fopen (filepath, "w");
+
+    fprintf (fp, "id,name,artists\n");
+
+    /* write 10 lines of text into the file stream*/
+    for(i = 1; i < size;i++)
+    {
+        fprintf (fp, "%s,%s,%s\n",arr_musics[i].Id,arr_musics[i].Name, arr_musics[i].Artists);
+    }
+
+    /* close the file*/  
+    fclose (fp);
+    return 0;
 }
 
 static char* getfield(char* line, int num)
