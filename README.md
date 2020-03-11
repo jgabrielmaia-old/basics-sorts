@@ -15,6 +15,9 @@ A hundred instances of Music will be created and then sorted by Insertion sort a
 
 The whole proccess can be observed as it also prints all the steps of reading, sorting and writing on the command line interface.
 
+## Downsides
+- This work doesn't work with CSV elements with multi-valued attributes. This will result in bugs on the parsing of the CSV elements.
+
 ## Author
 
 * **Jonas Gabriel Maia**
