@@ -23,7 +23,6 @@ static void BubbleSort (char toSort[], int size)
             if(toSort[j] > toSort[j+1])
             {
                 swapChar(&toSort[j], &toSort[j+1]);
-                printStr(toSort);
             }                
         }   
     }
@@ -84,8 +83,6 @@ static void MergeSort (char toSort[], int size)
 
 void Split(char toSort[], int first, int last)
 {
-    printf("First: %d, Last: %d\n", first,last);
-
     if (first < last)
     {
         int mid = (first + last) / 2;
