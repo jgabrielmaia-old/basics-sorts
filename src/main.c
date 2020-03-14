@@ -1,4 +1,3 @@
-#include <stdlib.h>
 #include "music.h"
 #include "sort.h"
 #include "fileHandler.h"
@@ -24,7 +23,7 @@ int main()
     printMusicArtistsAndNames(arr_musics_insert, 100);
 
     printf("\nSaving Musics on file for InsertionSort...\n");
-    writeMusicsToCSV("../data/spotify_insertionsort.csv", arr_musics_insert, 100);
+    writeMusicsToCSV( "../data/spotify_insertionsort.csv", arr_musics_insert, 100);
     printf("\nSaved!\n\n\n");
     
     //MergeSort

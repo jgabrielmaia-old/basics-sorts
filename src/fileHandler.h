@@ -2,10 +2,16 @@
 #include <stdlib.h>
 #include <string.h>
 
+#ifdef _WIN32
+#define strtok_r(s,d,p) strtok_s(s,d,p)
+#endif
+
+
 // Read musics from given CSV source 
 void readMusicsFromCSV(char* filepath, Music* arr_musics, int take);
 void readFromFile(char* filepath);
 int writeMusicsToCSV(char* filepath, Music* arr_musics, int size);
+char* replace_char(char* str, char find, char replace);
 
 static char* getfield(char* line, int num);
 
@@ -71,13 +77,42 @@ int writeMusicsToCSV(char* filepath, Music* arr_musics, int size)
 
 static char* getfield(char* line, int num)
 {
-    char* tok;
     int count = 0;
-    char* tmp = strdup(line);
-    
-    for(tok = strtok(tmp, ","); tok != NULL; tok = strtok(NULL, ",\n"))
+    char* next_token1 = NULL;
+    char* next_token2 = NULL;
+    char* tok = strtok_s(_strdup(line), ",", &next_token1);
+    char* tok2 = strtok_s(_strdup(line), "\"", &next_token2);
+
+    while (tok != NULL && tok2 != NULL)
     {
-        if (count++ == num)
-            return tok;
+        if (tok != NULL) 
+        {
+            if (count++ == num)
+            {
+                tok = replace_char(tok, ',', ' ');
+                return tok;
+            }
+
+            tok = strtok_r(NULL, ",", &next_token1);
+        }
+        if (tok2 != NULL)
+        {
+            if (count++ == num)
+                return tok;
+
+            tok = strtok_r(NULL, "\"", &next_token2);
+
+            next_token1 = next_token2;
+        }
     }
+}
+
+char* replace_char(char* str, char find, char replace) 
+{
+    char* current_pos = strchr(str, find);
+    while (current_pos) {
+        *current_pos = replace;
+        current_pos = strchr(current_pos, find);
+    }
+    return str;
 }
