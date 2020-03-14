@@ -77,34 +77,39 @@ int writeMusicsToCSV(char* filepath, Music* arr_musics, int size)
 
 static char* getfield(char* line, int num)
 {
-    int count = 0;
-    char* next_token1 = NULL;
-    char* next_token2 = NULL;
-    char* tok = strtok_s(_strdup(line), ",", &next_token1);
-    char* tok2 = strtok_s(_strdup(line), "\"", &next_token2);
+    int count = 1;
+    char* nextToken1 = NULL;
+    char* nextToken2 = NULL;
+    char* tok = strtok_s(_strdup(line), ",", &nextToken1);
+    char* tok2 = strtok_s(_strdup(line), "\"", &nextToken2);
 
-    while (tok != NULL && tok2 != NULL)
+    char* finalToken = tok;
+
+    while (count < num)
     {
+        char* token = NULL;
         if (tok != NULL) 
         {
-            if (count++ == num)
+            token = strtok_r(NULL, ",", &nextToken1);
+            if (token != NULL)
             {
-                tok = replace_char(tok, ',', ' ');
-                return tok;
+                finalToken = token;
             }
-
-            tok = strtok_r(NULL, ",", &next_token1);
         }
-        if (tok2 != NULL)
+        if (tok2 != NULL) 
         {
-            if (count++ == num)
-                return tok;
-
-            tok = strtok_r(NULL, "\"", &next_token2);
-
-            next_token1 = next_token2;
+            token = strtok_r(NULL, "\"", &nextToken2);
+            if (token != NULL)
+            {
+                finalToken = token;
+                nextToken1 = nextToken2;
+            }
         }
+        count++;
     }
+
+    finalToken = replace_char(finalToken, ',', ' ');
+    return finalToken;
 }
 
 char* replace_char(char* str, char find, char replace) 

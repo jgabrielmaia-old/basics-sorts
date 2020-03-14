@@ -33,7 +33,7 @@ int main()
     printMusicArtistsAndNames(arr_musics_merge, 100);
 
     printf("\nSaving Musics on file for MergeSort...\n");
-    writeMusicsToCSV("../data/spotify_mergesort.csv",arr_musics_merge, 10);
+    writeMusicsToCSV("../data/spotify_mergesort.csv",arr_musics_merge, 100);
     printf("\nSaved!\n\n\n");
 
     return 0;
