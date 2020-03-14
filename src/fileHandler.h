@@ -12,6 +12,7 @@ void readMusicsFromCSV(char* filepath, Music* arr_musics, int take);
 void readFromFile(char* filepath);
 int writeMusicsToCSV(char* filepath, Music* arr_musics, int size);
 char* replace_char(char* str, char find, char replace);
+char *trimwhitespace(char *str);
 
 static char* getfield(char* line, int num);
 
@@ -28,9 +29,9 @@ void readMusicsFromCSV(char* filepath, Music* arr_musics, int take)
 
     while (fgets(line, 1024, stream) && m < take)
     {
-        arr_musics[m].Id = getfield(line, 0);
-        arr_musics[m].Name = getfield(line, 1);
-        arr_musics[m].Artists = getfield(line, 2);
+        arr_musics[m].Id = getfield(line, 1);
+        arr_musics[m].Name = getfield(line, 2);
+        arr_musics[m].Artists = getfield(line, 3);
 
         m++;
     }
@@ -47,9 +48,9 @@ void readFromFile(char* filepath)
 
     while (fgets(line, 1024, stream))
     {
-        printf("Id: %s\n", getfield(line, 0));
-        printf("Name: %s\n", getfield(line, 1));
-        printf("Artists: %s\n", getfield(line, 2));
+        printf("Id: %s\n", getfield(line, 1));
+        printf("Name: %s\n", getfield(line, 2));
+        printf("Artists: %s\n", getfield(line, 3));
         printf("\n");
     }
 
@@ -109,6 +110,7 @@ static char* getfield(char* line, int num)
     }
 
     finalToken = replace_char(finalToken, ',', ' ');
+    finalToken = trimwhitespace(finalToken);
     return finalToken;
 }
 
@@ -120,4 +122,24 @@ char* replace_char(char* str, char find, char replace)
         current_pos = strchr(current_pos, find);
     }
     return str;
+}
+
+char *trimwhitespace(char *str)
+{
+  char *end;
+
+  // Trim leading space
+  while(isspace((unsigned char)*str)) str++;
+
+  if(*str == 0)  // All spaces?
+    return str;
+
+  // Trim trailing space
+  end = str + strlen(str) - 1;
+  while(end > str && isspace((unsigned char)*end)) end--;
+
+  // Write new null terminator character
+  end[1] = '\0';
+
+  return str;
 }
