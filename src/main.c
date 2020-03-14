@@ -29,6 +29,8 @@ int main()
     //MergeSort
     MergeSortMusicsByName(arr_musics_merge, 100);
     MergeSortMusicsByArtists(arr_musics_merge, 100);
+    //Ordering again will reverse the order off the strings and put it in their correct places
+    MergeSortMusicsByArtists(arr_musics_merge, 100);
     printf("\nSorted Musics by MergeSort:\n");
     printMusicArtistsAndNames(arr_musics_merge, 100);
 
