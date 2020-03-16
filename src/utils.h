@@ -9,5 +9,5 @@ void printIntArr(int* toPrint, int size)
     {
         printf("%d ", toPrint[i]);
     }
-    printf("\n");    
+    printf("\n\n");    
 }
