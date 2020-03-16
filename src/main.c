@@ -1,28 +1,29 @@
 #include <stdlib.h>
 #include "sort.h"
 #include "random.h"
+#include "utils.h"
 
 int main() 
 {
-    int numberCount = 9;
+    int size = 9;
 
-    int* toSort = (int*) calloc (sizeof(int), numberCount);
-    toSort = getManyRandom(toSort, numberCount);
+    int* toSort = (int*) calloc (sizeof(int), size);
+    toSort = getManyRandom(toSort, size);
 
     printf("\nMergeSort:");
-    MergeSort(toSort, numberCount);
-    printIntArr(toSort, numberCount);
+    MergeSort(toSort, size);
+    printIntArr(toSort, size);
     
     printf("\nInsertionSort:");
-    InsertionSort(toSort, numberCount);
-    printIntArr(toSort, numberCount);
+    InsertionSort(toSort, size);
+    printIntArr(toSort, size);
     
     printf("\nBubbleSort:");
-    BubbleSort(toSort, numberCount);
-    printIntArr(toSort, numberCount);
+    BubbleSort(toSort, size);
+    printIntArr(toSort, size);
     
     printf("\nSelectionSort:");
-    SelectionSort(toSort, numberCount);
-    printIntArr(toSort, numberCount);
+    SelectionSort(toSort, size);
+    printIntArr(toSort, size);
     return 0;
 }

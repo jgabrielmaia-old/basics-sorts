@@ -1,6 +1,5 @@
 #include<stdio.h>
 
-//Sorts
 static void BubbleSort (int toSort[], int size);
 static void InsertionSort (int toSort[], int size);
 static void SelectionSort (int toSort[], int size);
@@ -10,7 +9,6 @@ void Split (int toSort[], int first, int last);
 void Merge (int toSort[], int first, int mid, int last);
 void swapint (int *a, int *b);
 void swapInt (int *a, int *b);
-void printIntArr (int* toPrint, int size);
 
 static void BubbleSort (int toSort[], int size)
 {
@@ -121,12 +119,3 @@ void Merge(int toSort[], int first, int mid, int last)
         toSort[l] = aux[l-first];
 }
 
-void printIntArr(int* toPrint, int size)
-{
-    printf("\nRESULT:");
-    for (size_t i = 0; i < size; i++)
-    {
-        printf("%d ", toPrint[i]);
-    }
-    printf("\n");    
-}
