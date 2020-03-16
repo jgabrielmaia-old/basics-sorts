@@ -1,18 +1,18 @@
 #include<stdio.h>
 
 //Sorts
-static void BubbleSort (char toSort[], int size);
-static void InsertionSort (char toSort[], int size);
-static void SelectionSort (char toSort[], int size);
-static void MergeSort (char toSort[], int size);
+static void BubbleSort (int toSort[], int size);
+static void InsertionSort (int toSort[], int size);
+static void SelectionSort (int toSort[], int size);
+static void MergeSort (int toSort[], int size);
 
-void Split (char toSort[], int first, int last);
-void Merge (char toSort[], int first, int mid, int last);
-void swapChar (char *a, char *b);
+void Split (int toSort[], int first, int last);
+void Merge (int toSort[], int first, int mid, int last);
+void swapint (int *a, int *b);
 void swapInt (int *a, int *b);
-void printStr (char* toPrint);
+void printIntArr (int* toPrint, int size);
 
-static void BubbleSort (char toSort[], int size)
+static void BubbleSort (int toSort[], int size)
 {
     int i,j;
     
@@ -22,13 +22,13 @@ static void BubbleSort (char toSort[], int size)
         {
             if(toSort[j] > toSort[j+1])
             {
-                swapChar(&toSort[j], &toSort[j+1]);
+                swapint(&toSort[j], &toSort[j+1]);
             }                
         }   
     }
 }
 
-static void SelectionSort (char toSort[], int size)
+static void SelectionSort (int toSort[], int size)
 {
     int i,j, min;
     
@@ -40,14 +40,14 @@ static void SelectionSort (char toSort[], int size)
                 min = j;  
 
         if(i != min)
-            swapChar(&toSort[i], &toSort[min]);
+            swapint(&toSort[i], &toSort[min]);
     }
 }
 
-static void InsertionSort (char toSort[], int size)
+static void InsertionSort (int toSort[], int size)
 {
     int i,j;
-    char key;
+    int key;
     
     for(i = 1; i < size; i++)
     {
@@ -63,9 +63,9 @@ static void InsertionSort (char toSort[], int size)
     }
 }
 
-void swapChar(char *a, char *b)
+void swapint(int *a, int *b)
 { 
-    char temp = *a; 
+    int temp = *a; 
     *a = *b; 
     *b = temp; 
 } 
@@ -77,12 +77,12 @@ void swapInt(int *a, int *b)
     *b = temp; 
 }
 
-static void MergeSort (char toSort[], int size)
+static void MergeSort (int toSort[], int size)
 {
-    Split(toSort, 0, size - 1);
+    Split(toSort, 0, size);
 }
 
-void Split(char toSort[], int first, int last)
+void Split(int toSort[], int first, int last)
 {
     if (first < last)
     {
@@ -93,13 +93,13 @@ void Split(char toSort[], int first, int last)
     }
 }
 
-void Merge(char toSort[], int first, int mid, int last)
+void Merge(int toSort[], int first, int mid, int last)
 {
     int i = first, 
         j = mid + 1, 
         index = 0;
 
-    char aux[(last-first)+1];
+    int aux[(last-first)+1];
 
     while(i <= mid && j <= last)
     {
@@ -121,7 +121,12 @@ void Merge(char toSort[], int first, int mid, int last)
         toSort[l] = aux[l-first];
 }
 
-void printStr(char* toPrint)
+void printIntArr(int* toPrint, int size)
 {
-    printf("\nRESULT: %s\n\n", toPrint);
+    printf("\nRESULT:");
+    for (size_t i = 0; i < size; i++)
+    {
+        printf("%d ", toPrint[i]);
+    }
+    
 }

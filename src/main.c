@@ -1,17 +1,22 @@
 #include <stdlib.h>
 #include "sort.h"
+#include "random.h"
 
 int main() 
 {
-    // size = 8 + offset = 1
-    char toSort[9] = {'C','B','A','H','E','F','G','D'};
-    char toSort2[9] = {'Z','B','A','H','E','F','G','D'};
+    int* toSort = (int*) calloc (sizeof(int), 9);
+    toSort = getManyRandom(toSort, 9);
 
     MergeSort(toSort, 8);
-
-    InsertionSort(toSort2, 8);
-
-    printStr(toSort);
-    printStr(toSort2);
+    printIntArr(toSort, 8);
+    
+    InsertionSort(toSort, 8);
+    printIntArr(toSort, 8);
+    
+    BubbleSort(toSort, 8);
+    printIntArr(toSort, 8);
+    
+    SelectionSort(toSort, 8);
+    printIntArr(toSort, 8);
     return 0;
 }
