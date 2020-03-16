@@ -2,6 +2,7 @@
 #include "sort.h"
 #include "random.h"
 #include "utils.h"
+#include "timer.h"
 
 int main() 
 {
@@ -10,20 +11,16 @@ int main()
     int* toSort = (int*) calloc (sizeof(int), size);
     toSort = getManyRandom(toSort, size);
 
-    printf("\nMergeSort:");
-    MergeSort(toSort, size);
+    timer(MergeSort, "MergeSort", toSort, size);
     printIntArr(toSort, size);
     
-    printf("\nInsertionSort:");
-    InsertionSort(toSort, size);
+    timer(InsertionSort, "InsertionSort", toSort, size);
     printIntArr(toSort, size);
     
-    printf("\nBubbleSort:");
-    BubbleSort(toSort, size);
+    timer(BubbleSort, "InsertionSort", toSort, size);
     printIntArr(toSort, size);
     
-    printf("\nSelectionSort:");
-    SelectionSort(toSort, size);
+    timer(SelectionSort, "SelectionSort", toSort, size);
     printIntArr(toSort, size);
     return 0;
 }
