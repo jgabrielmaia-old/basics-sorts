@@ -4,19 +4,25 @@
 
 int main() 
 {
-    int* toSort = (int*) calloc (sizeof(int), 9);
-    toSort = getManyRandom(toSort, 9);
+    int numberCount = 9;
 
-    MergeSort(toSort, 8);
-    printIntArr(toSort, 8);
+    int* toSort = (int*) calloc (sizeof(int), numberCount);
+    toSort = getManyRandom(toSort, numberCount);
+
+    printf("\nMergeSort:");
+    MergeSort(toSort, numberCount);
+    printIntArr(toSort, numberCount);
     
-    InsertionSort(toSort, 8);
-    printIntArr(toSort, 8);
+    printf("\nInsertionSort:");
+    InsertionSort(toSort, numberCount);
+    printIntArr(toSort, numberCount);
     
-    BubbleSort(toSort, 8);
-    printIntArr(toSort, 8);
+    printf("\nBubbleSort:");
+    BubbleSort(toSort, numberCount);
+    printIntArr(toSort, numberCount);
     
-    SelectionSort(toSort, 8);
-    printIntArr(toSort, 8);
+    printf("\nSelectionSort:");
+    SelectionSort(toSort, numberCount);
+    printIntArr(toSort, numberCount);
     return 0;
 }
